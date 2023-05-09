@@ -24,24 +24,40 @@ const theme = createTheme({
 export default function form() {
   const [count, setCount] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
+  const [checkedState, setCheckedState] = useState(
+    new Array(3).fill(false)
+  );
 
-  function handleChange(){
-    setIsChecked(!isChecked);
+  function handleChange() {
+
   }
 
-  const checkbox = (num: number) => {
-      return (
-        <input type='checkbox' checked={isChecked} onClick={() => addCount(num)} onChange={() => handleChange} />
+  const checkbox = (num: number, index?: number) => {
+    if (index) {
+      return(
+        <input type='checkbox' onClick={() => addCount(num, index)} />
       )
+    }
+    return (
+      <input type='checkbox' onClick={() => addCount(num)} />
+    )
   }
 
-  function addCount(num: number) {
-    console.log(isChecked);
-    if(isChecked){
-      setCount(count + num);
+  function addCount(num: number, index?: number) {
+    let thisIsChecked = isChecked;
+    if (index) {
+      checkedState[index].setCheckedState(!checkedState[index]);
+      thisIsChecked = checkedState[index];
     }
     else{
-      setCount(count -num);
+      setIsChecked(!isChecked);
+    }
+    //console.log(isChecked);
+    if (thisIsChecked) {
+      setCount(count - num);
+    }
+    else {
+      setCount(count + num);
     }
   }
 
@@ -68,14 +84,14 @@ export default function form() {
                 <FormControlLabel value="20" onClick={() => addCount(20)} control={<Radio />} label="מלאה חלקית בתכולה" />
                 <FormControlLabel value="30" onClick={() => addCount(30)} control={<Radio />} label="מלאה לגמרי בתכולה " />
               </RadioGroup>
-            </FormControl>
+            </FormControl>*/}
 
             <h1>M04</h1>
             <h2>מסע ההובלה</h2>
-            <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> אם המשאית הגיעה ליעדה, לגמרי מעבר לקו הסיום הכחול שלה, ונמצאת על השטיח
-            <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> אם המטוס הגיע ליעדו, לגמרי מעבר לקו הסיום הכחול שלו, ונמצא על השטיח
-            <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> בונוס: אם שני התנאים למעלה מתקיימים
-            <h1>M08</h1>
+            {checkbox(10, 0)} אם המשאית הגיעה ליעדה, לגמרי מעבר לקו הסיום הכחול שלה, ונמצאת על השטיח
+            {checkbox(10, 1)} אם המטוס הגיע ליעדו, לגמרי מעבר לקו הסיום הכחול שלו, ונמצא על השטיח
+            {checkbox(10, 2)} בונוס: אם שני התנאים למעלה מתקיימים
+            {/*<h1>M08</h1>
             <h2>הצנחת מטען</h2>
             <input type='checkbox' onClick={() => addCount(20)} onChange={() => toggle(20)} /> אם חבילת האוכל הופרדה מהמסוק שלכם
             <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> אם חבילת האוכל הופרדה מהמסוק בזירה השניה, והיא לגמרי בתוך העיגול
