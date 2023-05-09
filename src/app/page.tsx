@@ -23,32 +23,26 @@ const theme = createTheme({
 {/*TODO: make pretty*/ }
 export default function form() {
   const [count, setCount] = useState(0);
-  const [times, setTimes] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
 
-  function onSub() {
-    console.log(count)
+  function handleChange(){
+    setIsChecked(!isChecked);
+  }
+
+  const checkbox = (num: number) => {
+      return (
+        <input type='checkbox' checked={isChecked} onClick={() => addCount(num)} onChange={() => handleChange} />
+      )
   }
 
   function addCount(num: number) {
-    setCount(count + num);
-    setTimes(times + 1);
-    console.log(times);
-  }
-
-  function toggle(num: number, radio?: boolean) {
-    if (radio) {
-      if (times % 2 == 0) {
-        addCount(-num);
-        setTimes(1);
-      }
+    console.log(isChecked);
+    if(isChecked){
+      setCount(count + num);
     }
-    else {
-      if (times % 2 == 0 && times != 0) {
-        console.log(times)
-        addCount(-num);
-      }
+    else{
+      setCount(count -num);
     }
-    console.log(times)
   }
 
   {/*TODO: make the inputs funcions or smth*/ }
@@ -57,15 +51,12 @@ export default function form() {
       <ThemeProvider theme={theme}>;
         <CssBaseline />
         <center>
-          <form onSubmit={onSub}>
+          <form>
             <h1>M00</h1>
             <h2>בונוס ביקורת ציוד M00</h2>
-            <input type='checkbox' onClick={() => addCount(20)} onChange={() => toggle(20)} /> אם כל הציוד שלכם נכנס באזור הביקורת הקטן
-            {/*TODO: reset times to 0 after every q*/}
-
-
-            {/*check toggle*/}
-            <h1>M02</h1>
+            {checkbox(20)} אם כל הציוד שלכם נכנס באזור הביקורת הקטן
+            {count}
+            {/*<h1>M02</h1>
             <h2>קיבולת לא מנוצלת</h2>
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">אם המכולת עם הצירים סגורה לגמרי</FormLabel>
@@ -91,12 +82,14 @@ export default function form() {
             <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> אם חבילת האוכל הופרדה מהמסוק שלכם
             {/*TODO: ask john if its check or radio*/}
 
+            {/*}
             <h1>M16</h1>
             <h2>CARGO CONNECT</h2>
             <p>אם יש מכולות בעיגול כלשהו</p>
-            <input type='checkbox' onClick={() => addCount(5)} onChange={() => toggle(5)} /> חלקית, 5 לכל אחת
+            <input type='' onClick={() => addCount(5)} onChange={() => toggle(5)} /> חלקית, 5 לכל אחת
             <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> לגמרי בתוך
             {/*TODO: make counter, with the last one too*/}
+            {/*}
             <input type='checkbox' onClick={() => addCount(20)} onChange={() => toggle(20)} /> אם המכולה הכחולה נמצאת לגמרי בתוך העיגול הכחול
             <input type='checkbox' onClick={() => addCount(20)} onChange={() => toggle(20)} /> אם המכולה הירוקה נמצאת לגמרי בתוך העיגול הירוק
             <input type='checkbox' onClick={() => addCount(10)} onChange={() => toggle(10)} /> אם יש עיגולים עם מכולה אחת לפחות לגמרי בתוכם
@@ -110,11 +103,11 @@ export default function form() {
             <button onClick={() => addCount(25)} onChange={() => toggle(25)}>3</button>
             <button onClick={() => addCount(15)} onChange={() => toggle(15)}>2</button>
             <button onClick={() => addCount(10)} onChange={() => toggle(10)}>1</button>
-            {count}
+            
             <Link href="/result">submit</Link>
             {/*TODO: re-direct to the score page*/}
             {/*TODO: ln where needed*/}
-            {/*TODO: maybe add id of the num points to each input and then pass the func it but in num*/}
+            TODO: maybe add id of the num points to each input and then pass the func it but in num
           </form>
         </center>
       </ThemeProvider>
