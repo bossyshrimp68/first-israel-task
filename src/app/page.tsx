@@ -46,7 +46,7 @@ export default function form() {
   function addCount(num: number, index?: number) {
     let thisIsChecked = isChecked;
     if (index) {
-      checkedState[index].setCheckedState(!checkedState[index]);
+      checkedState[index].setIsChecked(!checkedState[index]);
       thisIsChecked = checkedState[index];
     }
     else{
