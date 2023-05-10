@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { blue, red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Link from 'next/link';
+import { mission } from '@/mission';
 
 const theme = createTheme({
   palette: {
@@ -22,56 +23,15 @@ const theme = createTheme({
 
 {/*TODO: make pretty*/ }
 export default function form() {
-  const [count, setCount] = useState(0);
-  const [isChecked, setIsChecked] = useState(false);
-  const [checkedState, setCheckedState] = useState(
-    new Array(3).fill(false)
-  );
-
-  function handleChange() {
-
-  }
-
-  const checkbox = (num: number, index?: number) => {
-    if (index) {
-      return(
-        <input type='checkbox' onClick={() => addCount(num, index)} />
-      )
-    }
-    return (
-      <input type='checkbox' onClick={() => addCount(num)} />
-    )
-  }
-
-  function addCount(num: number, index?: number) {
-    let thisIsChecked = isChecked;
-    if (index) {
-      checkedState[index].setIsChecked(!checkedState[index]);
-      thisIsChecked = checkedState[index];
-    }
-    else{
-      setIsChecked(!isChecked);
-    }
-    //console.log(isChecked);
-    if (thisIsChecked) {
-      setCount(count - num);
-    }
-    else {
-      setCount(count + num);
-    }
-  }
-
-  {/*TODO: make the inputs funcions or smth*/ }
   return (
-    <div>
+    <>
       <ThemeProvider theme={theme}>;
         <CssBaseline />
         <center>
           <form>
-            <h1>M00</h1>
-            <h2>בונוס ביקורת ציוד M00</h2>
+            {mission("M00", "בונוס ביקורת ציוד")}
+              {/*}
             {checkbox(20)} אם כל הציוד שלכם נכנס באזור הביקורת הקטן
-            {count}
             {/*<h1>M02</h1>
             <h2>קיבולת לא מנוצלת</h2>
             <FormControl>
@@ -85,7 +45,7 @@ export default function form() {
                 <FormControlLabel value="30" onClick={() => addCount(30)} control={<Radio />} label="מלאה לגמרי בתכולה " />
               </RadioGroup>
             </FormControl>*/}
-
+            {/*}
             <h1>M04</h1>
             <h2>מסע ההובלה</h2>
             {checkbox(10, 0)} אם המשאית הגיעה ליעדה, לגמרי מעבר לקו הסיום הכחול שלה, ונמצאת על השטיח
@@ -123,10 +83,9 @@ export default function form() {
             <Link href="/result">submit</Link>
             {/*TODO: re-direct to the score page*/}
             {/*TODO: ln where needed*/}
-            TODO: maybe add id of the num points to each input and then pass the func it but in num
           </form>
         </center>
       </ThemeProvider>
-    </div>
+    </>
   )
 }
