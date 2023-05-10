@@ -11,7 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { blue, red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Link from 'next/link';
-import { mission } from '@/mission';
+import { MissionTypes, mission, more } from '@/mission';
 
 const theme = createTheme({
   palette: {
@@ -30,8 +30,7 @@ export default function form() {
         <center>
           <form>
             {mission("M00", "בונוס ביקורת ציוד")}
-              {/*}
-            {checkbox(20)} אם כל הציוד שלכם נכנס באזור הביקורת הקטן
+            {more(MissionTypes.CHECKBOX, "אם כל הציוד שלכם נכנס באזור הביקורת הקטן")}
             {/*<h1>M02</h1>
             <h2>קיבולת לא מנוצלת</h2>
             <FormControl>
