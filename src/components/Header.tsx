@@ -1,5 +1,4 @@
-'use-client';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 interface MyComponentProps {
   num: string;
