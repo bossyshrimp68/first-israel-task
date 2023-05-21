@@ -1,3 +1,8 @@
-export const mission = (props) => {
-  return <>{props.children}</>;
-};
+export function Mission(props: { children: any }) {
+  return (
+    <>
+      {props.children}
+      <br />
+    </>
+  );
+}
