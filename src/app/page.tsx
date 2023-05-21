@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { InputField, MissionTypes } from '@/components/InputField';
+import { mission } from '@/components/mission';
 
 {
   /*TODO: make pretty*/
@@ -12,8 +13,13 @@ export default function form() {
     <>
       <center>
         <form>
-          <Header num="M00" des="בונוס ביקורת ציוד" />
-          <InputField type={MissionTypes.CHECKBOX} des="אם כל הציוד שלכם נכנס באזור הביקורת הקטן" />
+          <mission>
+            <Header num="M00" des="בונוס ביקורת ציוד" />
+            <InputField
+              type={MissionTypes.CHECKBOX}
+              des="אם כל הציוד שלכם נכנס באזור הביקורת הקטן"
+            />
+          </mission>
           <Header num="M02" des="קיבולת לא מנוצלת" />
           <InputField type={MissionTypes.RADIO} des="אם המכולת עם הצירים סגורה לגמרי" />
           <InputField type={MissionTypes.RADIO} des="מלאה חלקית בתכולה" />
