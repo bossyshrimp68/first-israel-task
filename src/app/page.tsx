@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { InputField, MissionTypes } from '@/components/InputField';
-import { Mission } from '@/components/mission';
+import { Mission } from '@/components/Mission';
 
 {
   /*TODO: make pretty*/
 }
 export default function form() {
+  const [score, setScore] = useState(0);
   return (
     <>
       <center>
