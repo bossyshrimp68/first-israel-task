@@ -11,18 +11,26 @@ export enum MissionTypes {
 interface MyComponentProps {
   type: MissionTypes;
   des: string;
+  points?: number;
 }
 
 export const InputField = (props: MyComponentProps) => {
   const [checked, setIsChecked] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const handleChange = (event: any) => {
-    setIsChecked(event.target.checked);
+  const handleChange = () => {
+    if (checked && props.points) setScore(score + props.points);
+    else setScore(0);
+    setIsChecked(!checked);
+  };
+
+  const onSub = () => {
+    return score;
   };
 
   return (
     <div>
-      {props.type == MissionTypes.CHECKBOX && <Checkbox onChange={handleChange} />}
+      {props.type == MissionTypes.CHECKBOX && <Checkbox onChange={handleChange} onSubmit={onSub} />}
       {props.type == MissionTypes.RADIO && <RadioGroup />}
       {props.type == MissionTypes.TEXT && <TextField />}
       <Typography>{props.des}</Typography>

@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { InputField, MissionTypes } from '@/components/InputField';
 import { Mission } from '@/components/Mission';
+import { Checkbox, RadioGroup, TextField, Typography } from '@mui/material';
 
 {
   /*TODO: make pretty*/
 }
 export default function form() {
-  const [score, setScore] = useState(0);
+  const [finalScore, setFinalScore] = useState(0);
+
   return (
     <>
       <center>
@@ -19,8 +21,11 @@ export default function form() {
             <InputField
               type={MissionTypes.CHECKBOX}
               des="אם כל הציוד שלכם נכנס באזור הביקורת הקטן"
+              points={10}
             />
           </Mission>
+
+          <RadioGroup />
 
           <Mission>
             <Header num="M02" des="קיבולת לא מנוצלת" />
